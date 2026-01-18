@@ -1,24 +1,698 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F. Tots Engineers – Electrical Power Engineering</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-<html>
-    <h1>
-        Fred E
-    </h1>
-    <body>
-        <h2>WHAT BOUT</h2>
-        <p>
-            SIMPLE.
+    <style>
+        :root {
+            /* PREMIUM PALETTE - Scandinavian + Swiss Sophistication */
+            --bg-color: #FAFAF8; /* Warmer paper white */
+            --bg-secondary: #F5F5F2; /* Subtle variation */
+            --text-color: #1a1a1a; /* Rich black */
+            --text-secondary: #4a4a4a; /* Medium grey */
+            --accent-color: #B87333; /* Deep copper - electrical sophistication */
+            --accent-dark: #8B5A2B; /* Darker copper */
+            --line-color: #d8d8d5; /* Refined divider */
+            --line-accent: #c4a77d; /* Subtle copper tint */
+            --padding: 10vw;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            line-height: 1.85;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* TYPOGRAPHY HIERARCHY */
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 400;
+            color: #000;
+            letter-spacing: -0.01em;
+        }
+
+        .technical-font {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent-color);
+        }
+
+        /* HEADER - Refined Fixed Navigation */
+        header {
+            padding: 40px var(--padding);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(250, 250, 248, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            border-bottom: 1px solid transparent;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        header.scrolled { 
+            border-bottom: 1px solid var(--line-color);
+            padding: 25px var(--padding);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            transition: opacity 0.3s;
+        }
+
+        .logo:hover { opacity: 0.7; }
+
+        /* NAVIGATION */
+        nav ul {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 0.85rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after { width: 100%; }
+        nav a:hover { color: var(--accent-color); }
+
+        /* HERO - Elevated Presence */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 var(--padding);
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: clamp(3.5rem, 7vw, 6rem);
+            line-height: 1.05;
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+
+        .hero h1 span {
+            font-style: italic;
+            display: block;
+            font-size: 0.55em;
+            margin-top: 15px;
+            color: var(--accent-color);
+            font-weight: 400;
+        }
+
+        .hero-divider {
+            width: 1px;
+            height: 80px;
+            background: linear-gradient(to bottom, transparent, var(--accent-color), transparent);
+            margin: 50px auto;
+        }
+
+        .hero p {
+            max-width: 580px;
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            font-weight: 300;
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 120px var(--padding);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 90px;
+            border-bottom: 1px solid var(--line-color);
+            padding-bottom: 25px;
+        }
+
+        .section-header h2 { 
+            font-size: 2.8rem;
+            font-weight: 400;
+        }
+
+        /* SERVICES GRID - Enhanced Layout */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 70px;
+        }
+
+        .service-item {
+            transition: transform 0.3s ease;
+        }
+
+        .service-item:hover {
+            transform: translateY(-4px);
+        }
+
+        .service-item .technical-font {
+            display: block;
+            margin-bottom: 12px;
+            color: var(--accent-color);
+        }
+
+        .service-item h3 {
+            font-size: 1.65rem;
+            margin-bottom: 18px;
+            margin-top: 8px;
+            font-weight: 400;
+        }
+
+        .service-item p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* CREDENTIALS SECTION */
+        .credentials {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-color) 100%);
+            padding: 100px var(--padding);
+        }
+
+        .credentials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-top: 60px;
+        }
+
+        .credential-item {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .credential-item .technical-font {
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .credential-item h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+
+        .credential-item p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* ABOUT SECTION */
+        .about-content {
+            max-width: 750px;
+        }
+
+        .about-lead {
+            font-size: 1.35rem;
+            margin-bottom: 35px;
+            color: var(--accent-dark);
+            font-weight: 400;
+            line-height: 1.6;
+        }
+
+        .about-text {
+            font-size: 1rem;
+            line-height: 1.9;
+            color: var(--text-secondary);
+        }
+
+        /* CONTACT - Premium Touch */
+        .contact-section {
+            text-align: center;
+            padding: 160px var(--padding);
+            background: linear-gradient(to bottom, var(--bg-color) 0%, var(--bg-secondary) 100%);
+        }
+
+        .contact-link {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.2rem, 4.5vw, 4rem);
+            color: var(--accent-dark);
+            text-decoration: none;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .contact-link:hover {
+            border-bottom: 2px solid var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        .contact-details {
+            margin-top: 60px;
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            font-size: 0.95rem;
+        }
+
+        .contact-detail-item .technical-font {
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        /* LANGUAGE SWITCHER - Refined */
+        .lang-switch {
+            display: flex;
+            gap: 3px;
+            background-color: rgba(184, 115, 51, 0.05);
+            border-radius: 4px;
+            padding: 4px;
+        }
+
+        .lang-switch button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            padding: 6px 12px;
+            border-radius: 3px;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .lang-switch button:hover {
+            background-color: rgba(184, 115, 51, 0.08);
+            color: var(--accent-color);
+        }
+        
+        .lang-switch button.active { 
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        /* FOOTER */
+        .footer-note {
+            margin-top: 120px;
+            font-size: 0.8rem;
+            color: #999;
+            letter-spacing: 0.05em;
+        }
+
+        /* MOBILE RESPONSIVE */
+        @media (max-width: 768px) {
+            :root { --padding: 6vw; }
+            
+            header { 
+                padding: 20px var(--padding);
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+            
+            header.scrolled { padding: 15px var(--padding); }
+            
+            nav { 
+                order: 3;
+                width: 100%;
+                margin-top: 15px;
+            }
+            
+            nav ul { 
+                gap: 20px;
+                justify-content: center;
+            }
+            
+            .hero h1 { font-size: 2.8rem; }
+            .hero-divider { height: 60px; margin: 35px auto; }
+            
+            .section-header { 
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .section-header h2 { font-size: 2.2rem; }
+            
+            .services-grid { 
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+            
+            .credentials-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .contact-details { 
+                flex-direction: column;
+                gap: 30px;
+            }
+        }
+
+        /* SMOOTH SCROLL */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* SELECTION COLOR */
+        ::selection {
+            background-color: rgba(184, 115, 51, 0.2);
+            color: var(--text-color);
+        }
+    </style>
+</head>
+<body>
+
+    <header id="header">
+        <div class="logo">F. Tots Engineers</div>
+        
+        <nav>
+            <ul>
+                <li><a href="#services" data-i18n="nav_services">Ydelser</a></li>
+                <li><a href="#credentials" data-i18n="nav_credentials">Kvalifikationer</a></li>
+                <li><a href="#about" data-i18n="nav_about">Profil</a></li>
+                <li><a href="#contact" data-i18n="nav_contact">Kontakt</a></li>
+            </ul>
+        </nav>
+
+        <div class="lang-switch">
+            <button class="lang-btn active" onclick="setLanguage('da')">DA</button>
+            <button class="lang-btn" onclick="setLanguage('en')">EN</button>
+            <button class="lang-btn" onclick="setLanguage('de')">DE</button>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="technical-font">EST. 2026 — KØBENHAVN</div>
+        <h1>
+            F. Tots Engineers
+            <span data-i18n="hero_subtitle">Power Engineering & Consulting</span>
+        </h1>
+        <div class="hero-divider"></div>
+        <p data-i18n="hero_text">
+            Teknisk rådgivning og projektering inden for elenergi-systemer. 
+            Vi leverer beregninger, dimensionering og dokumentation i overensstemmelse med DS/EN og IEC standarder.
         </p>
-        <h2>DANISH KRONER</h2>
-        <p>
-           CLAUDIA.  Der er et yndigt land,
-	det står med brede bøge
-	nær salten østerstrand
-	nær salten østerstrand
-	det bugter sig i bakke, dal,
-	det hedder gamle Danmark,
-	og det er Frejas Sal
-	og det er Frejas Sal
-        </p>
-    </body>
+    </section>
+
+    <section id="services">
+        <div class="section-header">
+            <h2 data-i18n="services_title">Ekspertise</h2>
+            <span class="technical-font">01 — SERVICES</span>
+        </div>
+        
+        <div class="services-grid">
+            <div class="service-item">
+                <span class="technical-font">01.01</span>
+                <h3 data-i18n="serv1_title">Effektsystemanalyse</h3>
+                <p data-i18n="serv1_desc">Lastberegninger, kortslutningsanalyser og spændingsfald. Dimensionering af kabler, transformere og beskyttelsesudstyr efter DS/EN standarder.</p>
+            </div>
+            
+            <div class="service-item">
+                <span class="technical-font">01.02</span>
+                <h3 data-i18n="serv2_title">Elinstallationsprojektering</h3>
+                <p data-i18n="serv2_desc">CAD-tegning af tavler og installationer. Fra enfamiliehuse til industrianlæg — med både teoretisk og praktisk erfaring fra faget.</p>
+            </div>
+
+            <div class="service-item">
+                <span class="technical-font">01.03</span>
+                <h3 data-i18n="serv3_title">Netilslutning & Dokumentation</h3>
+                <p data-i18n="serv3_desc">Tilslutningsansøgninger til netselskaber, SKS/KLS dokumentation, samt tekniske rapporter til bygningsmyndigheder.</p>
+            </div>
+
+            <div class="service-item">
+                <span class="technical-font">01.04</span>
+                <h3 data-i18n="serv4_title">Beskyttelseskoordinering</h3>
+                <p data-i18n="serv4_desc">Selektivitetsanalyser, relæindstillinger og fejlstrømsberegninger. Sikrer pålidelig afbrydelse ved fejl uden unødvendige driftsstop.</p>
+            </div>
+
+            <div class="service-item">
+                <span class="technical-font">01.05</span>
+                <h3 data-i18n="serv5_title">Teknisk Rådgivning</h3>
+                <p data-i18n="serv5_desc">Uvildig rådgivning om tekniske løsninger, materialevalg og compliance. Kvalitetssikring af projekter fra koncept til udførelse.</p>
+            </div>
+
+            <div class="service-item">
+                <span class="technical-font">01.06</span>
+                <h3 data-i18n="serv6_title">Energioptimering</h3>
+                <p data-i18n="serv6_desc">Effektfaktoranalyser, harmoniske studier og last-profiler. Reducer elregninger og forbedre netværkskvalitet.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="credentials" class="credentials">
+        <div class="section-header">
+            <h2 data-i18n="cred_title">Værktøjer & Standarder</h2>
+            <span class="technical-font">02 — TOOLS & COMPLIANCE</span>
+        </div>
+        
+        <div class="credentials-grid">
+            <div class="credential-item">
+                <span class="technical-font">SOFTWARE</span>
+                <h4 data-i18n="cred1_title">Professionelle Værktøjer</h4>
+                <p data-i18n="cred1_desc">PowerFactory, PC Schematic, AutoCAD Electrical, ETAP</p>
+            </div>
+            
+            <div class="credential-item">
+                <span class="technical-font">STANDARDS</span>
+                <h4 data-i18n="cred2_title">Regulatorisk Compliance</h4>
+                <p data-i18n="cred2_desc">IEC 60364, IEC 60204, DS/EN standarder, BEK 1082</p>
+            </div>
+
+            <div class="credential-item">
+                <span class="technical-font">METHODOLOGY</span>
+                <h4 data-i18n="cred3_title">Ingeniørmetoder</h4>
+                <p data-i18n="cred3_desc">Load-flow analyse, kortslutning, koordinering, CAD</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="section-header">
+            <h2 data-i18n="about_title">Om Firmaet</h2>
+            <span class="technical-font">03 — FIRM PROFILE</span>
+        </div>
+        <div class="about-content">
+            <p class="about-lead" data-i18n="about_lead">
+                "Engineering-kvalitet. Installationsrealisme."
+            </p>
+            <p class="about-text" data-i18n="about_text">
+                F. Tots Engineers leverer teknisk rådgivning og projektering inden for elektriske energisystemer. 
+                Vi udfører beregninger, dimensionering, CAD-tegninger og dokumentation i overensstemmelse med 
+                IEC 60364, IEC 60204, DS/EN standarder og BEK 1082. Vores fokus er ingeniør-delen: load-flow analyser, 
+                kortslutningsberegninger, beskyttelseskoordinering og compliance-dokumentation. 
+                For fysisk udførelse samarbejder vi med autoriserede el-installatører. 
+                Vores værdi ligger i præcise tekniske løsninger — fra koncept til færdig dokumentation — 
+                der sikrer korrekt dimensionering, regulatorisk compliance og problemfri udførelse.
+            </p>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <div class="technical-font" style="margin-bottom: 35px;">INQUIRIES</div>
+        
+        <a href="mailto:kontakt@totsengineering.dk" class="contact-link">kontakt@totsengineering.dk</a>
+        
+        <div class="contact-details">
+            <div class="contact-detail-item">
+                <span class="technical-font">LOCATION</span>
+                Rødovre, Danmark
+            </div>
+            <div class="contact-detail-item">
+                <span class="technical-font">PHONE</span>
+                +45 XX XX XX XX
+            </div>
+        </div>
+        
+        <div class="footer-note">
+            &copy; 2026 F. TOTS ENGINEERING APS — CVR: XXXXXXXX
+        </div>
+    </section>
+
+    <script>
+        // Smooth Scroll Header Effect
+        let lastScrollTop = 0;
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+            
+            lastScrollTop = scrollTop;
+        });
+
+        // Multi-language Support
+        const translations = {
+            da: {
+                nav_services: "Ydelser",
+                nav_credentials: "Værktøjer", 
+                nav_about: "Profil",
+                nav_contact: "Kontakt",
+                hero_subtitle: "Power Engineering & Consulting",
+                hero_text: "Teknisk rådgivning og projektering inden for elenergi-systemer. Vi leverer beregninger, dimensionering og dokumentation i overensstemmelse med DS/EN og IEC standarder.",
+                services_title: "Ekspertise",
+                serv1_title: "Effektsystemanalyse",
+                serv1_desc: "Lastberegninger, kortslutningsanalyser og spændingsfald. Dimensionering af kabler, transformere og beskyttelsesudstyr efter DS/EN standarder.",
+                serv2_title: "Elinstallationsprojektering",
+                serv2_desc: "CAD-tegning af tavler og installationer. Fra enfamiliehuse til industrianlæg — med både teoretisk og praktisk erfaring fra faget.",
+                serv3_title: "Netilslutning & Dokumentation",
+                serv3_desc: "Tilslutningsansøgninger til netselskaber, SKS/KLS dokumentation, samt tekniske rapporter til bygningsmyndigheder.",
+                serv4_title: "Beskyttelseskoordinering",
+                serv4_desc: "Selektivitetsanalyser, relæindstillinger og fejlstrømsberegninger. Sikrer pålidelig afbrydelse ved fejl uden unødvendige driftsstop.",
+                serv5_title: "Teknisk Rådgivning",
+                serv5_desc: "Uvildig rådgivning om tekniske løsninger, materialevalg og compliance. Kvalitetssikring af projekter fra koncept til udførelse.",
+                serv6_title: "Energioptimering",
+                serv6_desc: "Effektfaktoranalyser, harmoniske studier og last-profiler. Reducer elregninger og forbedre netværkskvalitet.",
+                cred_title: "Værktøjer & Standarder",
+                cred1_title: "Professionelle Værktøjer",
+                cred1_desc: "PowerFactory, PC Schematic, AutoCAD Electrical, ETAP",
+                cred2_title: "Regulatorisk Compliance",
+                cred2_desc: "IEC 60364, IEC 60204, DS/EN standarder, BEK 1082",
+                cred3_title: "Ingeniørmetoder",
+                cred3_desc: "Load-flow analyse, kortslutning, koordinering, CAD",
+                about_title: "Om Firmaet",
+                about_lead: "\"Engineering-kvalitet. Installationsrealisme.\"",
+                about_text: "F. Tots Engineers leverer teknisk rådgivning og projektering inden for elektriske energisystemer. Vi udfører beregninger, dimensionering, CAD-tegninger og dokumentation i overensstemmelse med IEC 60364, IEC 60204, DS/EN standarder og BEK 1082. Vores fokus er ingeniør-delen: load-flow analyser, kortslutningsberegninger, beskyttelseskoordinering og compliance-dokumentation. For fysisk udførelse samarbejder vi med autoriserede el-installatører. Vores værdi ligger i præcise tekniske løsninger — fra koncept til færdig dokumentation — der sikrer korrekt dimensionering, regulatorisk compliance og problemfri udførelse."
+            },
+            en: {
+                nav_services: "Services",
+                nav_credentials: "Tools",
+                nav_about: "Profile",
+                nav_contact: "Contact",
+                hero_subtitle: "Power Engineering & Consulting",
+                hero_text: "Technical consulting and design for electrical power systems. We deliver calculations, sizing, and documentation in compliance with DS/EN and IEC standards.",
+                services_title: "Expertise",
+                serv1_title: "Power System Analysis",
+                serv1_desc: "Load calculations, short-circuit analysis, and voltage drop studies. Sizing of cables, transformers, and protection equipment per DS/EN standards.",
+                serv2_title: "Electrical Installation Design",
+                serv2_desc: "CAD drawings of panels and installations. From residential to industrial — with both theoretical and hands-on trade experience.",
+                serv3_title: "Grid Connection & Documentation",
+                serv3_desc: "Utility connection applications, compliance documentation (SKS/KLS), and technical reports for building authorities.",
+                serv4_title: "Protection Coordination",
+                serv4_desc: "Selectivity analysis, relay settings, and fault current calculations. Ensuring reliable fault clearing without unnecessary outages.",
+                serv5_title: "Technical Consulting",
+                serv5_desc: "Independent advice on technical solutions, material selection, and compliance. Quality assurance from concept to execution.",
+                serv6_title: "Energy Optimization",
+                serv6_desc: "Power factor analysis, harmonic studies, and load profiles. Reduce electricity costs and improve power quality.",
+                cred_title: "Tools & Standards",
+                cred1_title: "Professional Software",
+                cred1_desc: "PowerFactory, PC Schematic, AutoCAD Electrical, ETAP",
+                cred2_title: "Regulatory Compliance",
+                cred2_desc: "IEC 60364, IEC 60204, DS/EN standards, BEK 1082",
+                cred3_title: "Engineering Methods",
+                cred3_desc: "Load-flow analysis, short-circuit, coordination, CAD",
+                about_title: "Firm Profile",
+                about_lead: "\"Engineering quality. Installation realism.\"",
+                about_text: "F. Tots Engineers provides technical consulting and design for electrical power systems. We perform calculations, sizing, CAD drawings, and documentation in accordance with IEC 60364, IEC 60204, DS/EN standards, and BEK 1082. Our focus is the engineering side: load-flow analysis, short-circuit calculations, protection coordination, and compliance documentation. For physical execution, we partner with licensed electricians. Our value lies in precise technical solutions — from concept to final documentation — ensuring correct sizing, regulatory compliance, and smooth execution."
+            },
+            de: {
+                nav_services: "Leistungen",
+                nav_credentials: "Werkzeuge",
+                nav_about: "Profil",
+                nav_contact: "Kontakt",
+                hero_subtitle: "Energietechnik & Beratung",
+                hero_text: "Technische Beratung und Planung für elektrische Energiesysteme. Wir liefern Berechnungen, Dimensionierung und Dokumentation gemäß DS/EN und IEC-Normen.",
+                services_title: "Expertise",
+                serv1_title: "Energiesystemanalyse",
+                serv1_desc: "Lastberechnungen, Kurzschlussanalysen und Spannungsabfall. Dimensionierung von Kabeln, Transformatoren und Schutzeinrichtungen nach DS/EN-Normen.",
+                serv2_title: "Elektroinstallationsplanung",
+                serv2_desc: "CAD-Zeichnungen von Schaltanlagen und Installationen. Von Einfamilienhäusern bis Industrieanlagen — mit theoretischer und praktischer Erfahrung.",
+                serv3_title: "Netzanschluss & Dokumentation",
+                serv3_desc: "Anschlussanträge bei Netzbetreibern, SKS/KLS-Dokumentation sowie technische Berichte für Baubehörden.",
+                serv4_title: "Schutzkoordination",
+                serv4_desc: "Selektivitätsanalysen, Relaiseinstellungen und Fehlerströmberechnungen. Gewährleistet zuverlässige Fehlerabschaltung ohne unnötige Betriebsunterbrechungen.",
+                serv5_title: "Technische Beratung",
+                serv5_desc: "Unabhängige Beratung zu technischen Lösungen, Materialauswahl und Compliance. Qualitätssicherung vom Konzept bis zur Ausführung.",
+                serv6_title: "Energieoptimierung",
+                serv6_desc: "Leistungsfaktoranalysen, Oberwellenstudien und Lastprofile. Reduzieren Sie Stromkosten und verbessern Sie die Netzqualität.",
+                cred_title: "Werkzeuge & Normen",
+                cred1_title: "Professionelle Software",
+                cred1_desc: "PowerFactory, PC Schematic, AutoCAD Electrical, ETAP",
+                cred2_title: "Vorschriftenmäßigkeit",
+                cred2_desc: "IEC 60364, IEC 60204, DS/EN-Normen, BEK 1082",
+                cred3_title: "Ingenieurmethoden",
+                cred3_desc: "Lastflussanalyse, Kurzschluss, Koordinierung, CAD",
+                about_title: "Firmenprofil",
+                about_lead: "\"Engineering-Qualität. Installations-Realismus.\"",
+                about_text: "F. Tots Engineers bietet technische Beratung und Planung für elektrische Energiesysteme. Wir führen Berechnungen, Dimensionierungen, CAD-Zeichnungen und Dokumentationen gemäß IEC 60364, IEC 60204, DS/EN-Normen und BEK 1082 durch. Unser Fokus liegt auf der Engineering-Seite: Lastflussanalysen, Kurzschlussberechnungen, Schutzkoordination und Compliance-Dokumentation. Für die physische Ausführung arbeiten wir mit autorisierten Elektrikern zusammen. Unser Wert liegt in präzisen technischen Lösungen — vom Konzept bis zur fertigen Dokumentation — die korrekte Dimensionierung, Einhaltung der Vorschriften und reibungslose Ausführung gewährleisten."
+            }
+        };
+
+        function setLanguage(lang) {
+            // Update active button
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Update all translated elements
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+            
+            // Update HTML lang attribute
+            document.documentElement.lang = lang;
+            
+            // Store preference
+            localStorage.setItem('preferred-language', lang);
+        }
+
+        // Load saved language preference
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferred-language');
+            if (savedLang && translations[savedLang]) {
+                const btn = document.querySelector(`.lang-btn[onclick*="${savedLang}"]`);
+                if (btn) btn.click();
+            }
+        });
+    </script>
+</body>
 </html>
-
